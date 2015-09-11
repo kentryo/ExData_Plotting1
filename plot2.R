@@ -8,7 +8,10 @@ data_subset <- subset(rawdata, subset = (Date >= "2007-02-01" & Date <= "2007-02
 #convert target to numeric
 data_subset$Global_active_power <- as.numeric(data_subset$Global_active_power)
 
-#make histgram
-png("plot1.png", width = 480, height = 480)
-hist(data_subset$Global_active_power, col = "red", main="Global Active Power", xlab="Global Active Power (kilowatts)", ylab = "Frequency")
+#create datetime
+datetime <- strptime(paste(as.character(data_subset$Date), data_subset$Time, sep = " "), format = "%Y-%m-%d %H:%M:%S")
+
+#make plot2
+png("plot2.png", width = 480, height = 480)
+plot(datetime, data_subset$Global_active_power, type = "l",ylab = "Global Active Power (kilowatts)", xlab = "")
 dev.off()

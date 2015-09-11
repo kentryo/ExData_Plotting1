@@ -1,0 +1,18 @@
+{
+    "contents" : "#load data\nrawdata <- read.csv(\"./household_power_consumption.txt\", header = TRUE, sep = \";\", stringsAsFactors = FALSE)\n\n#convert date and subset data\nrawdata$Date <- as.Date(rawdata$Date, format = \"%d/%m/%Y\")\ndata_subset <- subset(rawdata, subset = (Date >= \"2007-02-01\" & Date <= \"2007-02-02\"))\n\n#create datetime\ndatetime <- strptime(paste(as.character(data_subset$Date), data_subset$Time, sep = \" \"), format = \"%Y-%m-%d %H:%M:%S\")\n\n#convert target data to numeric\nglobal_active_power <- as.numeric(data_subset$Global_active_power)\nglobal_reactive_power <- as.numeric(data_subset$Global_reactive_power)\nvoltage <- as.numeric(data_subset$Voltage)\nsub_metering_1 <- as.numeric(data_subset$Sub_metering_1)\nsub_metering_2 <- as.numeric(data_subset$Sub_metering_2)\nsub_metering_3 <- as.numeric(data_subset$Sub_metering_3)\n\n#make plot4\npng(\"plot4.png\", width = 480, height = 480)\npar(mfrow = c(2, 2))\n\nplot(datetime, global_active_power, type = \"l\", yylab = \"Global Active Power\", xlab = \"\")\n\nplot(datetime, voltage, type = \"l\", ylab = \"Voltage\", xlab = \"datetime\")\n\nplot(datetime, sub_metering_1, type = \"l\", ylab = \"Energy sub metering\",xlab = \"\")\nlines(datetime, sub_metering_2, type = \"l\", col = \"red\")\nlines(datetime, sub_metering_3, type = \"l\", col = \"blue\")\nlegend(\"topright\", legend = c(\"Sub_metering_1\", \"Sub_metering_2\", \"Sub_metering_3\"), col = c(\"black\", \"red\", \"blue\"), lty = 1, lwd = 1, bty = \"n\")\n\nplot(datetime, global_reactive_power, type = \"l\", ylab = \"Global_reactive_power\", xlab = \"datetime\")\n\ndev.off()",
+    "created" : 1441935165585.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1269871816",
+    "id" : "885CA029",
+    "lastKnownWriteTime" : 1441935890,
+    "path" : "~/ExData_Plotting1/plot4.R",
+    "project_path" : "plot4.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
