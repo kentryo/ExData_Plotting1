@@ -1,4 +1,6 @@
 ## Introduction
+12/12/16
+The project was reviewed and modified for submission for the certification of the exploratory data analysis course.
 
 This assignment uses data from
 the <a href="http://archive.ics.uci.edu/ml/">UC Irvine Machine
